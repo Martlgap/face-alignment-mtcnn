@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open('requirements.txt') as f:
+with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
 setup(
@@ -13,5 +13,5 @@ setup(
     license="MIT",
     description="A lightweight face-alignment toolbox with MTCNN.",
     long_description=open("README.md").read(),
-    install_requires=requirements
+    install_requires=requirements,
 )

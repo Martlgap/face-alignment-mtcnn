@@ -54,8 +54,7 @@ def tflite_inference(model, img):
 
 
 class StageStatus:
-    """Keeps status between MTCNN stages
-    """
+    """Keeps status between MTCNN stages"""
 
     def __init__(self, pad_result: tuple = None, width=0, height=0):
         self.width = width
@@ -115,7 +114,7 @@ class FaceAlignmentTools:
         steps_threshold: list = None,
         scale_factor: float = 0.7,
         alignment_style: str = None,
-        weights_path: str = None
+        weights_path: str = None,
     ):
         """Initializes the MTCNN
 
@@ -152,7 +151,8 @@ class FaceAlignmentTools:
                     [70.7299, 92.2041],
                 ],
                 dtype=np.float32,
-            ) / 112,
+            )
+            / 112,
             "ms1m": np.array(
                 [
                     [38.128662, 51.516567],
@@ -162,7 +162,8 @@ class FaceAlignmentTools:
                     [71.38436, 90.78255],
                 ],
                 dtype=np.float32,
-            ) / 112,
+            )
+            / 112,
             "lfw": np.array(
                 [
                     [38.411846, 52.59001],
@@ -172,7 +173,8 @@ class FaceAlignmentTools:
                     [71.64599, 90.62956],
                 ],
                 dtype=np.float32,
-            ) / 112,
+            )
+            / 112,
         }
 
     def align(self, img, dsize: tuple = None, allow_multiface: bool = False):
