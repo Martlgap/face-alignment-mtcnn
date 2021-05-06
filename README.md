@@ -61,7 +61,7 @@ aligned_face = tools.align(<image>)
 
 
 ## 🚀 Run Example
-Download example.py file and run it with Python 3.8:
+Download repository and run it with Python 3.8:
 ```shell
 python example.py
 ```
