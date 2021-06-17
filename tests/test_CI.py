@@ -28,3 +28,11 @@ def test_no_face():
     img = cv2.imread("tests/samples/no_face.png")
     assert tool.align(img) is None
     assert tool.align(img, allow_multiface=True) is None
+
+
+@pytest.mark.centerface
+def test_multi_face():
+    tool = facealignment.FaceAlignmentTools(weights_path="weights/")
+    img = cv2.imread("tests/samples/multi_face.png")
+    assert type(tool.align(img)) == np.ndarray
+    assert type(tool.align(img, central_face=True)) == np.ndarray

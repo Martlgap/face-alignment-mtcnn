@@ -177,18 +177,19 @@ class FaceAlignmentTools:
             / 112,
         }
 
-    def align(self, img, dsize: tuple = None, allow_multiface: bool = False):
+    def align(self, img, dsize: tuple = None, allow_multiface: bool = False, central_face: bool = False):
         """Face detection and alignment of a single image
 
         :param img: color image RGB
         :param dsize: desired image size for aligned image
         :param allow_multiface: allow to detect and align multiple faces on the image
+        :param central_face: if multiple faces occur in the image, take the most central face
         :return: aligned image with same shape and dtype as img, if allow_multifaces list of aligned images (dim + 1)
         """
 
         dst_points = self._landmarks[self._alignment_style]  # Load saved landmarks
 
-        n_src_points = self.detect_face(img, allow_multiface=allow_multiface)
+        n_src_points = self.detect_face(img, allow_multiface=allow_multiface or central_face)
         if n_src_points is None:
             UserWarning("No face detected! Skipping face alignment!")
             return None
@@ -197,7 +198,25 @@ class FaceAlignmentTools:
         for src_points in n_src_points:
             faces.append(align_face(img, src_points, dst_points, dsize))
 
-        return faces if allow_multiface else faces[0]
+        if allow_multiface:
+            return faces
+        elif central_face:
+            return faces[self.__determine_center_face_idx(n_src_points)]
+        else:
+            return faces[0]
+
+    @staticmethod
+    def __determine_center_face_idx(n_src_points: np.ndarray):
+        """ If multiple face are detected on an image, this method finds the index for the most central face
+
+        :param n_src_points: landmarks for all found faces on image
+        :return: index for the most central face
+        """
+
+        # Make list of Nose landmark points
+        noses = np.sum(np.abs(n_src_points[:, 2, :] - 125), axis=1)
+        idx = np.argmin(noses)
+        return idx
 
     def detect_face(self, img: np.ndarray, allow_multiface: bool = False):
         """Detects bounding boxes from the specified image.
