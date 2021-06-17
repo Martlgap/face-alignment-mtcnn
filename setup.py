@@ -4,7 +4,7 @@ with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
 setup(
-    version="0.1",
+    version="0.2",
     name="face-alignment-mtcnn",
     packages=find_packages(),
     url="https://github.com/Martlgap/face-alignment",
