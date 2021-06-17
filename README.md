@@ -44,7 +44,7 @@ pip3 install git+https://github.com/martlgap/face-alignment-mtcnn
 ``` 
 or if you do not have git installed on your system, install it directly from the wheel:
 ```zsh
-pip3 install https://github.com/Martlgap/face-alignment-mtcnn/releases/latest/download/face_alignment_mtcnn-0.1-py3-none-any.whl
+pip3 install https://github.com/Martlgap/face-alignment-mtcnn/releases/latest/download/face_alignment_mtcnn-0.2-py3-none-any.whl
 ``` 
 
 
