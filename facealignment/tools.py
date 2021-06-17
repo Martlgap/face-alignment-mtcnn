@@ -239,8 +239,6 @@ class FaceAlignmentTools:
         if height * width > 1000000:
             UserWarning("Face detection is slow, check image size and consider down-sampling first!")
 
-        #img = img[:, :, ::-1]  # RGB TO BGR
-
         stage_status = StageStatus(width=width, height=height)
         m = 12 / self._min_face_size
         min_layer = np.amin([height, width]) * m
