@@ -201,12 +201,12 @@ class FaceAlignmentTools:
         if allow_multiface:
             return faces
         elif central_face:
-            return faces[self.__determine_center_face_idx(n_src_points)]
+            return faces[self.__determine_center_face_idx(n_src_points, img.shape[:2])]
         else:
             return faces[0]
 
     @staticmethod
-    def __determine_center_face_idx(n_src_points: np.ndarray):
+    def __determine_center_face_idx(n_src_points: np.ndarray, im_size: np.array):
         """ If multiple face are detected on an image, this method finds the index for the most central face
 
         :param n_src_points: landmarks for all found faces on image
@@ -214,7 +214,7 @@ class FaceAlignmentTools:
         """
 
         # Make list of Nose landmark points
-        noses = np.sum(np.abs(n_src_points[:, 2, :] - 125), axis=1)
+        noses = np.sum(np.abs(n_src_points[:, 2, :] - im_size), axis=1)
         idx = np.argmin(noses)
         return idx
 
