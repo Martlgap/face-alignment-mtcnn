@@ -214,7 +214,7 @@ class FaceAlignmentTools:
         """
 
         # Make list of Nose landmark points
-        noses = np.sum(np.abs(n_src_points[:, 2, :] - im_size), axis=1)
+        noses = np.sum(np.abs(n_src_points[:, 2, :] - (im_size[0] / 2, im_size[1] / 2)), axis=1)
         idx = np.argmin(noses)
         return idx
 
