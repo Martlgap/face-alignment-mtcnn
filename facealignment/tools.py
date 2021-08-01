@@ -177,19 +177,24 @@ class FaceAlignmentTools:
             / 112,
         }
 
-    def align(self, img, dsize: tuple = None, allow_multiface: bool = False, central_face: bool = False):
+    def align(self, img, dsize: tuple = None, allow_multiface: bool = False, central_face: bool = False, alignment: list = None):
         """Face detection and alignment of a single image
 
         :param img: color image RGB
         :param dsize: desired image size for aligned image
         :param allow_multiface: allow to detect and align multiple faces on the image
         :param central_face: if multiple faces occur in the image, take the most central face
+        :param alignment: if alignment is given, aligns according that information. Format see: detect_face() method
         :return: aligned image with same shape and dtype as img, if allow_multifaces list of aligned images (dim + 1)
         """
 
         dst_points = self._landmarks[self._alignment_style]  # Load saved landmarks
 
-        n_src_points = self.detect_face(img, allow_multiface=allow_multiface or central_face)
+        if alignment is None:
+            n_src_points = self.detect_face(img, allow_multiface=allow_multiface or central_face)
+        else:
+            n_src_points = alignment
+
         if n_src_points is None:
             UserWarning("No face detected! Skipping face alignment!")
             return None
