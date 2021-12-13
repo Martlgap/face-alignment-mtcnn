@@ -55,7 +55,7 @@ pip3 install https://github.com/Martlgap/face-alignment-mtcnn/releases/latest/do
 ```shell
 import facealignment
 
-tools = facealignment.FaceAlignTools()
+tools = facealignment.FaceAlignmentTools()
 aligned_face = tools.align(<image>)
 ```
 
