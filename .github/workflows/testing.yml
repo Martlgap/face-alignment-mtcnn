@@ -1,4 +1,4 @@
-name: CI Testing
+name: CI testing
 
 # see: https://help.github.com/en/actions/reference/events-that-trigger-workflows
 on:
@@ -6,14 +6,14 @@ on:
  push:
     branches:
       - main
- pull_request:
+ pull_request_target:
     branches:
       - main
 
 jobs:
   pytest:
   
-    runs-on: ${{ matrix.os}}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -57,3 +57,13 @@ jobs:
       if: success()
       run: |
         coverage report
+  automerge:
+    needs: pytest
+    runs-on: ubuntu-latest
+    permissions:
+        pull-requests: write
+        contents: write
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v3
+        with:
+          github-token: ${{ secrets.automerge }}
