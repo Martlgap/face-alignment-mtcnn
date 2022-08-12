@@ -1,4 +1,4 @@
-setuptools==63.4.3
+setuptools==64.0.1
 numpy~=1.23.1
 tqdm~=4.64.0
 opencv-python~=4.6.0.66
