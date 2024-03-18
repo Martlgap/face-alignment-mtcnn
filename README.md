@@ -26,7 +26,7 @@ Pull request are welcome!
 
 
 ## 🥣 Requirements
-- [Python 3.8](https://www.python.org/)
+- [Python 3.9](https://www.python.org/)
 - [TensorflowLite-Runtime 2.5.0](https://www.tensorflow.org/lite/guide/python)
 - Tested on: Ubuntu 20.04, Windows 10, MacOS 11.3
 
