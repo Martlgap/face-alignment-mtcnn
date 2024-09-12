@@ -4,9 +4,5 @@ updates:
     directory: "/" # Location of the dependency files
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "04:00"
-      timezone: "UTC"
-      interval: "weekly"
     ignore:
       - dependency-name: "numpy"
