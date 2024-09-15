@@ -26,8 +26,6 @@ jobs:
     steps:
     - name: Checkout repository and submodules
       uses: actions/checkout@v2
-      with:
-        submodules: recursive
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
@@ -39,6 +37,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install --requirement requirements.txt --upgrade --quiet
         pip install --requirement tests/requirements.txt --quiet
+        pip install tflite-runtime --find-links https://google-coral.github.io/py-repo/tflite-runtime/ --quiet
         python --version
         pip --version
         pip list
