@@ -2,4 +2,4 @@ setuptools==75.6.0
 numpy==1.24.4
 opencv-python~=4.10.0.84
 tqdm~=4.67.1
-scikit-image==0.24.0
+scikit-image==0.25.0
